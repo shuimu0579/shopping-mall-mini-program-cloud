@@ -233,9 +233,11 @@ Page({
     // console.log('data', data);
 
     wx.cloud.callFunction({
-      name: 'pay',
+      // name: 'pay',
+      name: 'pay-xunhu',
       data,
       success: res => {
+        debugger
         const payment = res.result.payment
         console.log('payment', res);
         wx.requestPayment({
@@ -248,7 +250,10 @@ Page({
           }
         })
       },
-      fail: console.error,
+      fail: ()=>{
+        debugger
+        console.error
+      },
     })
   },
 
