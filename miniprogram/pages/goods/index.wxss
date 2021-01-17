@@ -1,0 +1,33 @@
+/* miniprogram/pages/goods/index.wxss */
+.price .van-cell__title {
+  color: rgba(181, 154, 81, 1);
+  font-size: 20pt;
+}
+
+.title .van-cell__title {
+  font-size: 17pt;
+}
+
+.buydesc .van-cell__title {
+  font-size: 13px;
+}
+
+.share {
+  font-size: 11px;
+  background-color: #F5F9FA;
+  color: #767A7B;
+  border-radius: 30px;
+  padding: 5px 10px;
+  margin-right: -27px;
+  width: 50px;
+  text-align: center;
+  float: right;
+}
+
+.van-tag {
+  margin-left: 10px;
+}
+
+.van-popup {
+  background-color: #efefef;
+}

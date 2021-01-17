@@ -1,0 +1,25 @@
+<!--miniprogram/pages/new-address/index.wxml-->
+<!-- <text>miniprogram/pages/new-address/index.wxml</text> -->
+<van-cell-group>
+  <van-field model:value="{{ userName }}" placeholder="收货人" clearable label="收货人" border="{{ false }}" />
+
+  <van-field model:value="{{ telNumber }}" type="number" placeholder="手机号或座机" clearable label="电话"
+    border="{{ false }}" />
+
+  <van-cell>
+    <view slot="title">
+      <picker bind:change="bindRegionChange" mode="region" value="{{region}}" custom-item="全部">
+        <view class="picker">
+          <text style="padding-right:55px;">省市区</text>
+          {{region[0]}}，{{region[1]}}，{{region[2]}}
+        </view>
+      </picker>
+    </view>
+  </van-cell>
+
+  <van-field model:value="{{ detailInfo }}" placeholder="详细地址" clearable label="详细地址" border="{{ false }}" />
+</van-cell-group>
+
+<view style="padding:20px 15px">
+  <van-button bind:click="save" type="primary" size="large">保存并使用</van-button>
+</view>

@@ -1,0 +1,106 @@
+<!--miniprogram/pages/goods/index.wxml-->
+<!-- <text>miniprogram/pages/goods/index.wxml</text> -->
+<swiper indicator-dots style="height:300px;">
+	<block wx:for="{{goodsImages}}" wx:key="*this">
+		<swiper-item>
+			<van-image lazy-load loading="loading" fit="cover" width="100%" height="300" src="{{item.content}}" />
+		</swiper-item>
+	</block>
+</swiper>
+<!-- 标题及价格 -->
+<view style="background-color:white;padding: 10px 15px 0;font-family:'微软雅黑'">
+	<view style="color:#C0A769;">
+		<text style="font-size:11px;">￥</text>
+		<text style="font-size:18px;">{{goodsData.start_price}}</text>
+	</view>
+	<van-row>
+		<van-col span="16">
+			<view style="color:black;font-size:16px;">{{goodsData.goods_name}}</view>
+		</van-col>
+		<van-col span="8" style="text-align:right;">
+			<view class="iconfont icon-share share"> 分享</view>
+		</van-col>
+	</van-row>
+	<view style="color:#939697;font-size:11px;">{{goodsData.goods_desc}}</view>
+</view>
+
+<van-cell-group border="{{false}}">
+	<van-cell class="buydesc" title="全程护航，请放心购买" is-link />
+</van-cell-group>
+
+<van-cell-group title=" ">
+	<van-cell value="" is-link>
+		<view slot="title">
+			<text style="float: left;padding-right: 10px;font-size: 13px;color: gray;">运费</text>
+			<view>免运费</view>
+		</view>
+	</van-cell>
+</van-cell-group>
+
+<van-cell-group title=" ">
+	<van-cell value="" is-link>
+		<view slot="title">
+			<text style="float: left;padding-right: 10px;font-size: 13px;color: gray;">服务</text>
+			<view>收货后结算</view>
+		</view>
+	</van-cell>
+	<van-cell value="" is-link bind:click="showSkuPanelPopup">
+		<view slot="title">
+			<text style="float: left;padding-right: 10px;font-size: 13px;color: gray;">规格</text>
+			<view>
+				{{selectedGoodsSkuObject.text || "选择"}}
+			</view>
+		</view>
+	</van-cell>
+</van-cell-group>
+
+<button bindtap="requestHomeApiByReq4" type="primary">测试登陆</button>
+
+<view style="padding:10px 10px 100px;">
+	<van-image wx:for="{{goodsImages}}" wx:key="content" lazy-load loading="loading" fit="cover" width="100%" height="300"
+		src="{{item.content}}" />
+	<text>{{goodsContentInfo.content}}</text>
+</view>
+
+<van-goods-action>
+	<van-goods-action-icon icon="cart-o" text="购物车" info="0" />
+	<van-goods-action-icon icon="shop-o" text="店铺" />
+	<van-goods-action-button bindtap="addToCart" text="加入购物车" type="warning" />
+	<van-goods-action-button text="立即购买" />
+</van-goods-action>
+
+<van-popup show="{{showSkuPanel}}" closeable position="bottom" round
+	custom-style="min-height:200px;background-color: #efefef;" bind:close="onCloseSkuPanel">
+	<view style="width:100%;background-color: #efefef;display:flex;padding:10px 10px 0;">
+		<view>
+			<image style="width:100px;height:100px;border-radius:5px;" src="{{goodsImages[0].content}}" />
+		</view>
+		<view style="flex:1;padding-left:10px;color: gray;padding-top: 10px;">
+			<view>价格：{{selectedGoodsSku.price/100}}元</view>
+			<view>库存：{{selectedGoodsSku.stock}}</view>
+			<view>规格：
+				<text wx:for="{{goodsSkuData.goodsAttrKeys}}" wx:key="attr_key"
+					style="padding-right:5px;">{{selectedAttrValue[item.attr_key].attr_value}}</text>
+			</view>
+		</view>
+	</view>
+
+	<block wx:for="{{goodsSkuData.goodsAttrKeys}}" wx:key="attr_key">
+		<van-cell-group title=" ">
+			<van-cell>
+				<view slot="title">
+					<view class="van-cell-text">{{item.attr_key}}</view>
+					<block wx:for="{{item.goods_attr_values}}" wx:for-item="item2" wx:key="attr_value">
+						<van-tag bindtap="onTapSkuTag" data-attrvalue="{{item2}}" data-attrkey="{{item.attr_key}}"
+							plain="{{item2.id!=selectedAttrValue[item.attr_key].id}}" type="primary">{{item2.attr_value}}</van-tag>
+					</block>
+				</view>
+			</van-cell>
+		</van-cell-group>
+	</block>
+
+	<van-button bindtap="onConfirmGoodsSku" type="primary" size="large">确定</van-button>
+
+</van-popup>
+
+<LoginPanel show="{{showLoginPanel}}"></LoginPanel>

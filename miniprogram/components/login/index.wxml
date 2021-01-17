@@ -1,0 +1,16 @@
+
+<van-popup show="{{visible}}" position="bottom" 
+custom-style="min-height:200px;background-color: #efefef;">
+		<view class="picker-view">
+			<view class="picker-view__pane">
+				<text bindtap="close">取消</text>
+			</view>
+			<view style="font-size:17px;font-weight:bold;line-height:30px;border-bottom:1px solid #f2f2f2;padding: 0px 0 20px;width: 100%;color:#353535;text-align: center;">微信授权登录</view>
+			<image style="width: 40px;height: 40px;padding-top: 20px;" src="/static/image/component-on.png"></image>
+			<view style="font-size:17px;font-weight:400;color:#353535;line-height: 40px;">小程序将申请获取以下权限</view>
+			<view style="font-size:11px;color:#b2b2b2;border-bottom:1px solid #f2f2f2;width: 100%;padding: 0px 0 40px;text-align: center;">● 获得你的公开信息（昵称、头像、地区及性别）</view>
+			<view style="height:80px;padding-top: 20px;">
+				<button bindgetuserinfo="login" open-type="getUserInfo" type="primary">登陆</button>
+			</view>
+		</view>
+</van-popup>

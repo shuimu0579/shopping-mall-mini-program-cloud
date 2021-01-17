@@ -1,0 +1,14 @@
+/* miniprogram/pages/cart/index.wxss */
+.goods-card {
+  background-color: #fefefe !important;
+}
+
+.goods-card-container {
+  display: flex;
+  margin: 10px;
+  background: #fefefe;
+}
+
+.goods-card-container+.goods-card-container {
+  padding-top: 10px;
+}

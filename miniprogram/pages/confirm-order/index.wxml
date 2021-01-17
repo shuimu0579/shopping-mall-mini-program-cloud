@@ -1,0 +1,40 @@
+<!--miniprogram/pages/confirm-order/index.wxml-->
+<!-- <text>miniprogram/pages/confirm-order/index.wxml</text> -->
+
+<van-cell-group>
+  <van-cell bind:click="toSelectAddress" is-link icon="location-o" size="large" title="{{address.userName}}"
+    value="{{address.telNumber}}" label="{{address.addressInfo}}" />
+</van-cell-group>
+
+<view style="padding:10px;">
+  <block wx:for="{{carts}}" wx:key="id">
+    <van-card custom-class="goods-card" price="{{item.price*item.num/100}}元" desc="{{item.sku_desc}}"
+      title="{{item.goods_name}}" thumb="{{item.goods_image}}">
+      <view slot="footer">
+        <text>x{{item.num}}</text>
+      </view>
+    </van-card>
+  </block>
+</view>
+
+<van-cell-group title=" ">
+  <van-cell title="优惠" value="暂无可用" is-link />
+</van-cell-group>
+
+<van-cell-group title=" ">
+  <van-cell title="配置方式" value="快递免运费" />
+  <van-field model:value="{{ userMessage }}" label="买家留言" border="{{ false }}" placeholder="留言建议提前协商" />
+</van-cell-group>
+
+<van-cell-group title=" ">
+  <van-cell title="商品金额" value="￥900" />
+  <van-cell title="运费" value="+￥200" />
+  <van-cell custom-class="total-price" title="" value="合计：￥900" />
+</van-cell-group>
+
+<van-submit-bar price="{{ totalPrice }}" button-text="提交订单" bind:submit="onSubmit" />
+
+
+<!-- 小微商户支付 -->
+<xunhupay wx:if="{{ prepareSubmchPay }}" params="{{ submchPayParams }}" bindsuccess="bindPaySuccess"
+  bindfail="bindPayFail" bindcomplete="bindPayComplete" />

@@ -1,0 +1,18 @@
+/* miniprogram/pages/recycle/index.wxss */
+
+/* 长列表item */
+/* .item>view，选择.item的直接子元素view */
+.item,
+.item>view {
+  display: flex;
+  align-items: center;
+  height: 100rpx;
+  width: 100%;
+  padding-left: 20rpx;
+}
+
+/* +加号选择器，选择紧接在.item元素后的元素，
+代表除第一个之外，后面的.item，用于实现间隔样式 */
+.item+.item {
+  border-top: 1px solid #ccc;
+}

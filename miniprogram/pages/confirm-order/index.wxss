@@ -1,0 +1,30 @@
+/* miniprogram/pages/confirm-order/index.wxss */
+.goods-card {
+  background-color: #fefefe !important;
+}
+
+.goods-card .van-card__title {
+  margin-top: 10px;
+}
+
+.goods-card .van-card__img {
+  border-radius: 10px;
+}
+
+.goods-card-container {
+  display: flex;
+  margin: 10px;
+  background: #fefefe;
+}
+
+.goods-card-container+.goods-card-container {
+  padding-top: 10px;
+}
+
+.total-price .van-cell__value {
+  color: rgb(236, 176, 98);
+}
+
+page {
+  padding-bottom: 100px;
+}

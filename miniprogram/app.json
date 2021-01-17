@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/cart/index",
+    "pages/address-list/index",
+    "pages/new-address/index",
+    "pages/confirm-order/index",
+    "pages/category/index",
+    "pages/goods/index",
+    "pages/index/index",
+    "pages/my/index"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "第4章",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/static/image/index.png",
+        "selectedIconPath": "/static/image/index_on.png"
+      },
+      {
+        "pagePath": "pages/category/index",
+        "text": "分类",
+        "iconPath": "/static/image/category.png",
+        "selectedIconPath": "/static/image/category_on.png"
+      },
+      {
+        "pagePath": "pages/cart/index",
+        "text": "购物车",
+        "iconPath": "/static/image/cart.png",
+        "selectedIconPath": "/static/image/cart_on.png"
+      },
+      {
+        "pagePath": "pages/my/index",
+        "text": "我的",
+        "iconPath": "/static/image/my.png",
+        "selectedIconPath": "/static/image/my_on.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "useExtendedLib": {
+    "weui": true
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "mp-vtabs": "@miniprogram-component-plus/vtabs/index",
+    "mp-vtabs-content": "@miniprogram-component-plus/vtabs-content/index",
+    "van-card": "@vant/weapp/card/index",
+    "van-button": "@vant/weapp/button/index",
+    "van-icon": "@vant/weapp/icon/index"
+  }
+}

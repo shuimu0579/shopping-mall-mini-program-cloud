@@ -1,0 +1,8 @@
+<!--miniprogram/pages/recycle/index.wxml-->
+<recycle-view height="200" batch="{{batchSetRecycleData}}" id="recycleId" batch-key="batchSetRecycleData" style="background:white;">
+	<recycle-item wx:for="{{recycleList}}" wx:key="index" class='item'>
+		<view>
+			{{item.id}}: {{item.name}}
+		</view>
+	</recycle-item>
+</recycle-view>

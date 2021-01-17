@@ -1,0 +1,37 @@
+<!--miniprogram/pages/index/index.wxml-->
+<text>miniprogram/pages/index/index.wxml</text>
+
+<van-button type="primary">按钮</van-button>
+
+<van-area
+  area-list="{{ areaList }}"
+  columns-placeholder="{{ ['请选择', '请选择', '请选择'] }}"
+  title="标题" bind:confirm="onAreaConfirm"
+/>
+
+<van-circle
+  value="30"
+  text="30%"
+  size="120"
+/>
+
+<view class="van-ellipsis">
+  这是一段宽度有限的文字，后面的内容会省略掉。
+</view>
+
+<view style="width:100px;" class="van-multi-ellipsis--l2">
+  这是一段最多显示两行的文字，后面的内容会省略
+</view>
+
+<view style="width:100px;" class="van-multi-ellipsis--l3 van-hairline--top">
+  这是一段最多显示三行的文字，后面的内容会省略，后面的内容会省略。
+</view>
+
+<view class="van-hairline--top">
+....1
+</view>
+
+<view style="border-top:1px solid #ddd;">
+....2
+</view>
+

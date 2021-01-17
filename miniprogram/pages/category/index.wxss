@@ -1,0 +1,23 @@
+@import '../../static/style/common.wxss';
+
+page {
+    background-color: #FFFFFF;
+    height: 100%;
+}
+
+.vtabs-content-item {
+    width: 100%;
+    height: auto;
+    min-height: 200px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ccc;
+    /* padding-bottom: 20px; */
+}
+
+/* mp-vtabs-content:last-child{
+    padding-bottom: 300px;
+} */
+
+.van-card__title {
+    padding-top: 10px;
+}
