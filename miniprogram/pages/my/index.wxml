@@ -13,6 +13,8 @@
   <button class="userinfo-nickname" bindtap="onGetOpenid">获取 openid</button>
 
   <button class="userinfo-nickname" bindtap="testForWexinPay">测试支付</button>
+  <button class="userinfo-nickname" bindtap="testForXunhuPay">测试小微商户云支付</button>
+  
 
   <button class="userinfo-nickname" bindtap="testForAddUser">测试云函数新增用户</button>
 

@@ -233,6 +233,47 @@ Page({
     // console.log('data', data);
 
     wx.cloud.callFunction({
+      name: 'pay',
+      data,
+      success: res => {
+        debugger
+        const payment = res.result.payment
+        console.log('payment', res);
+        wx.requestPayment({
+          ...payment,
+          success(res) {
+            console.log('pay success', res)
+          },
+          fail(res) {
+            console.error('pay fail', res)
+          }
+        })
+      },
+      fail: ()=>{
+        debugger
+        console.error
+      },
+    })
+  },
+
+  // 测试小微商户云支付
+  async testForXunhuPay(e) {
+    const getRandomNumber = (minNum = 1000000000, maxNum = 99999999999999) => parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10)
+
+    // let ipQueryDataRes = await wx.wxp.request({
+    //   url: 'http://ip-api.com/json'
+    // })
+    // console.log('ipQueryDataRes',ipQueryDataRes);
+    // let ip = ipQueryDataRes ? ipQueryDataRes.data.query : '127.0.0.1'
+    debugger
+    let data = {
+      body: '云支付测试商品',
+      outTradeNo: '' + getRandomNumber(),
+      totalFee: 1
+    }
+    // console.log('data', data);
+
+    wx.cloud.callFunction({
       // name: 'pay',
       name: 'pay-xunhu',
       data,
