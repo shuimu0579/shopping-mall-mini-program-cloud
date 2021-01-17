@@ -1,5 +1,5 @@
 // miniprogram/pages/my/index.js
-var plugin = requirePlugin("weather");
+// var plugin = requirePlugin("weather");
 
 Page({
 
