@@ -265,7 +265,6 @@ Page({
     // })
     // console.log('ipQueryDataRes',ipQueryDataRes);
     // let ip = ipQueryDataRes ? ipQueryDataRes.data.query : '127.0.0.1'
-    debugger
     let data = {
       body: '云支付测试商品',
       outTradeNo: '' + getRandomNumber(),
