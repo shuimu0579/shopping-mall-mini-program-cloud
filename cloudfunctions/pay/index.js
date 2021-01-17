@@ -4,7 +4,7 @@ const cloud = require('wx-server-sdk')
 const subMchId = '1410138302'
 
 cloud.init({
-  env: cloud.DYNAMIC_CURRENT_ENV
+  env: cloud.DYNAMIC_CURRENT_ENV //cloud.DYNAMIC_CURRENT_ENV 动态环境id
 })
 
 exports.main = async (event, context) => {
@@ -20,7 +20,7 @@ exports.main = async (event, context) => {
     "spbillCreateIp" : ip,
     "subMchId" : subMchId,
     "totalFee" : totalFee,
-    "envId": "weapp-ebfl5",//cloud.DYNAMIC_CURRENT_ENV
+    "envId": "suimu-9ghxtdk0036c6000",//suimu-9ghxtdk0036c6000 是 静态环境id
     "functionName": "pay_cb"
   })
   return res
