@@ -1,2 +1,54 @@
 <!--miniprogram/pages/my/index.wxml-->
-<text>miniprogram/pages/my/index.wxml</text>
+<!-- <text>miniprogram/pages/my/index.wxml</text> -->
+<view class="container">
+  <!-- 用户 openid -->
+  <view class="userinfo">
+    <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="userinfo-avatar"
+      style="background-image: url({{avatarUrl}})" size="default"></button>
+    <view class="userinfo-nickname-wrapper">
+      <text>{{userInfo.nickName}}</text>
+    </view>
+  </view>
+
+  <button class="userinfo-nickname" bindtap="onGetOpenid">获取 openid</button>
+
+  <button class="userinfo-nickname" bindtap="testForWexinPay">测试支付</button>
+
+  <button class="userinfo-nickname" bindtap="testForAddUser">测试云函数新增用户</button>
+
+  <button class="userinfo-nickname" bindtap="testForGetUser">测试小程序端拉取用户</button>
+
+  <!-- 6.13 -->
+  <ad unit-id="adunit-121d18004936ce9e"></ad>
+
+  <!-- 6.10 -->
+  <button class="userinfo-nickname" bindtap="testForChat">测试数据推送监听</button>
+  <button class="userinfo-nickname" bindtap="testForSend">测试推送</button>
+  <button class="userinfo-nickname" bindtap="testForSend2">测试推送2(调用云函数)</button>
+
+  <!-- 6.10 -->
+  <button class="userinfo-nickname" bindtap="testForFileUpload">测试文件上传</button>
+  <button class="userinfo-nickname" bindtap="testForFileRetrieve">测试文件拉取</button>
+
+  <!-- 7.2 -->
+  <button class="userinfo-nickname" bindtap="testForRewardedVideoAd">看广告拿积分</button>
+
+  <!-- 7.3 -->
+  <button class="userinfo-nickname" bindtap="testForShowCustom">显示自定义广告1</button>
+  <!-- 自定义广告 -->
+  <ad-custom wx:if="{{showCustomAd}}" unit-id="adunit-05d2f4463f4b0acc"></ad-custom>
+
+  <!-- use js -->
+  <button class="userinfo-nickname" bindtap="testForShowCustom2">显示自定义广告2</button>
+
+<!-- 使用插件 -->
+<navigator url="plugin://weather/index">
+  <button class="login">今日天气 {{today.area}} {{today.temperature}}℃</button>
+</navigator>
+
+<!-- 订阅 -->
+<button bind:tap="requestSubscribe" class="login">开启订阅模板消息</button>
+<button bind:tap="sendSubscribeMessage" class="login">推送消息</button>
+
+
+</view>
