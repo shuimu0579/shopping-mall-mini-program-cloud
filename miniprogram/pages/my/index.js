@@ -271,9 +271,7 @@ Page({
       totalFee: 1
     }
     // console.log('data', data);
-
     wx.cloud.callFunction({
-      // name: 'pay',
       name: 'pay-xunhu',
       data,
       success: res => {
