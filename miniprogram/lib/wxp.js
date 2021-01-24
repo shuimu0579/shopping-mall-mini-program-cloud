@@ -4,7 +4,7 @@ import {
 
 // http://localhost:3000
 // const URL_BASE = 'http://localhost:3000'
-const URL_BASE = 'http://10.8.1.104:3000' //wifi下的动态ip,与手机的wifi相同
+const URL_BASE = 'http://10.8.1.37:3000' //wifi下的动态ip,与手机的wifi相同
 
 const wxp = {
   URL_BASE
