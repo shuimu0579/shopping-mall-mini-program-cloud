@@ -13,7 +13,12 @@
   <button class="userinfo-nickname" bindtap="onGetOpenid">获取 openid</button>
 
   <button class="userinfo-nickname" bindtap="testForWexinPay">测试支付</button>
+
+  <!-- 测试小微商户云支付 -->
   <button class="userinfo-nickname" bindtap="testForXunhuPay">测试小微商户云支付</button>
+  <!-- 调起小微商户支付组件 -->
+  <xunhupay wx:if="{{ prepareSubmchPay }}" params="{{ submchPayParams }}" bindsuccess="bindPaySuccess"
+  bindfail="bindPayFail" bindcomplete="bindPayComplete" />
   
 
   <button class="userinfo-nickname" bindtap="testForAddUser">测试云函数新增用户</button>

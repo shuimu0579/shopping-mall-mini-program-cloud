@@ -9,26 +9,130 @@ Page({
   data: {
     avatarUrl: './user-unlogin.png',
     userInfo: {},
-    currentUserDocId: ''
+    currentUserDocId: '',
+
+    submchPayParams: {},
+    submchPayorderResult: {},
+    prepareSubmchPay: false,
   },
+
+  // 测试小微商户云支付
+  async testForXunhuPay(e) {
+    let data = {
+      totalFee: 1,
+      addressId:"111",
+      addressDesc:'宝安区',
+      goodsCartsIds:["1","2"],
+      goodsNameDesc:'新安街道'
+    }
+    let res = await wx.wxp.request4({
+      // url: 'http://localhost:3000/user/my/order3',
+      url: 'http://localhost:3000/user/my/order4',
+      method: 'post',
+      data
+    })
+    console.log(res);
+    let submchPayParams = res.data.data.params
+    console.log("submchPayParams", submchPayParams);
+    this.setData({
+      prepareSubmchPay: true,
+      submchPayParams
+    })
+    /**
+     const getRandomNumber = (minNum = 1000000000, maxNum = 99999999999999) => parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10)
+
+    let data = {
+      body: '云支付测试商品',
+      outTradeNo: '' + getRandomNumber(),
+      totalFee: 1
+    }
+    
+    wx.cloud.callFunction({
+      name: 'pay-xunhu',
+      data,
+      success: res => {
+        const payment = res.result.payment
+        console.log('payment', res);
+        wx.requestPayment({
+          ...payment,
+          success(res) {
+            console.log('pay success', res)
+          },
+          fail(res) {
+            console.error('pay fail', res)
+          }
+        })
+      },
+      fail: ()=>{
+        console.error
+      },
+    })
+     * **/
+
+  },
+  // 小微商户支付成功后
+  async bindPaySuccess(res) {
+    console.log('success', res)
+    this.setData({
+      submchPayorderResult: res.detail.info,
+    })
+    await wx.wxp.showModal({
+      title: '支付成功',
+      content: '支付单号：' + res.detail.info.orderId,
+      showCancel: false
+    })
+    let carts = this.data.carts
+    let goodsCartsIds = carts.map(item => item.id)
+    this.removeCartsGoods(goodsCartsIds)
+  },
+  bindPayFail(res) {
+    console.log('fail', res)
+    this.setData({
+      submchPayorderResult: res.detail.info
+    })
+    if (res.detail.error) {
+      console.error('发起支付失败', res.detail.info)
+      wx.showModal({
+        title: '支付失败，请重试',
+        content: '支付单号：' + res.detail.info.orderId,
+        showCancel: false
+      })
+    } else if (res.detail.navigateSuccess) {
+      console.log('[取消支付] 支付单号：', res.detail.info.orderId)
+      wx.showModal({
+        title: '支付取消了，why?',
+        content: '支付单号：' + res.detail.info.orderId,
+        showCancel: false
+      })
+    }
+  },
+  bindPayComplete() {
+    console.log('complete')
+    this.setData({
+      prepareSubmchPay: false
+    })
+  },
+
+
+
   // 推送订阅消息
-  async sendSubscribeMessage(){
+  async sendSubscribeMessage() {
     let res = await wx.wxp.cloud.callFunction({
       name: 'send_message',
-      data:{
-        desc:new Date().getMilliseconds(),
-        page:'/pages/my/index'
+      data: {
+        desc: new Date().getMilliseconds(),
+        page: '/pages/my/index'
       }
     })
     console.log('res', res);
   },
   // 订阅消息
-  async requestSubscribe(){
+  async requestSubscribe() {
     let res = await wx.requestSubscribeMessage({
       tmplIds: ['umED6QCm8NMD3iF5TkchewczDyXCVysqPt14mhEJWkk'],
     })
     console.log(res);
-    if (res.errMsg== 'requestSubscribeMessage:ok'){
+    if (res.errMsg == 'requestSubscribeMessage:ok') {
       // ok
     }
   },
@@ -236,7 +340,6 @@ Page({
       name: 'pay',
       data,
       success: res => {
-        debugger
         const payment = res.result.payment
         console.log('payment', res);
         wx.requestPayment({
@@ -249,47 +352,7 @@ Page({
           }
         })
       },
-      fail: ()=>{
-        debugger
-        console.error
-      },
-    })
-  },
-
-  // 测试小微商户云支付
-  async testForXunhuPay(e) {
-    const getRandomNumber = (minNum = 1000000000, maxNum = 99999999999999) => parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10)
-
-    // let ipQueryDataRes = await wx.wxp.request({
-    //   url: 'http://ip-api.com/json'
-    // })
-    // console.log('ipQueryDataRes',ipQueryDataRes);
-    // let ip = ipQueryDataRes ? ipQueryDataRes.data.query : '127.0.0.1'
-    let data = {
-      body: '云支付测试商品',
-      outTradeNo: '' + getRandomNumber(),
-      totalFee: 1
-    }
-    // console.log('data', data);
-    wx.cloud.callFunction({
-      name: 'pay-xunhu',
-      data,
-      success: res => {
-        debugger
-        const payment = res.result.payment
-        console.log('payment', res);
-        wx.requestPayment({
-          ...payment,
-          success(res) {
-            console.log('pay success', res)
-          },
-          fail(res) {
-            console.error('pay fail', res)
-          }
-        })
-      },
-      fail: ()=>{
-        debugger
+      fail: () => {
         console.error
       },
     })
