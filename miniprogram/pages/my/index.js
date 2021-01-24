@@ -30,14 +30,13 @@ Page({
       name: 'pay-xunhu',
       data,
       success: res => {
-        // debugger
-        let submchPayParams = res.data.data.params
+        console.log('res...', res)
+        let submchPayParams = res.result.data.params
         console.log("submchPayParams", submchPayParams);
         this.setData({
           prepareSubmchPay: true,
           submchPayParams
         })
-        // debugger
       },
       fail: () => {
         console.error

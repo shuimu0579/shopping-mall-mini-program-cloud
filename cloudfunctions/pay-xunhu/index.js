@@ -102,16 +102,17 @@ exports.main = async (event, ctx) => {
   let params = getOrderParams(trade)
   console.log('params', params);
   let err = '',
-    res
+    res,
+    result
   // 在这里还没有产生package，因为prepay_id还没有产生
   if (params && params.sign) {
-    // debugger
     // 创建记录
     const db = cloud.database()
     let res1 = await db.collection('order').where({
       'out_trade_no': params.out_trade_no
     }).limit(1).get()
-    // debugger
+    console.log(res1)
+
     if (!res1.data.length) {
       let res = await db.collection('order').add({
         params
@@ -129,6 +130,6 @@ exports.main = async (event, ctx) => {
     err = 'error! return null!'
     console.log(err);
   }
-
+  console.log('result...', result)
   return result
 }
