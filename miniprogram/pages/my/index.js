@@ -43,13 +43,6 @@ Page({
         console.error
       },
     })
-
-
-    
-
-
-    
-
   },
   // 将已经下单的商品从购物车中移除
   async removeCartsGoods(goodsCartsIds) {
