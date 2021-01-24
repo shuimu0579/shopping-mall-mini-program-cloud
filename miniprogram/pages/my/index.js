@@ -20,55 +20,59 @@ Page({
   async testForXunhuPay(e) {
     let data = {
       totalFee: 1,
-      addressId:"111",
-      addressDesc:'宝安区',
-      goodsCartsIds:["1","2"],
-      goodsNameDesc:'新安街道'
+      addressId: "111",
+      addressDesc: '宝安区',
+      goodsCartsIds: ["1", "2"],
+      goodsNameDesc: '新安街道'
     }
-    let res = await wx.wxp.request4({
-      // url: 'http://localhost:3000/user/my/order3',
-      url: 'http://localhost:3000/user/my/order4',
-      method: 'post',
-      data
-    })
-    console.log(res);
-    let submchPayParams = res.data.data.params
-    console.log("submchPayParams", submchPayParams);
-    this.setData({
-      prepareSubmchPay: true,
-      submchPayParams
-    })
-    /**
-     const getRandomNumber = (minNum = 1000000000, maxNum = 99999999999999) => parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10)
 
-    let data = {
-      body: '云支付测试商品',
-      outTradeNo: '' + getRandomNumber(),
-      totalFee: 1
-    }
-    
-    wx.cloud.callFunction({
+    wx.wxp.cloud.callFunction({
       name: 'pay-xunhu',
       data,
       success: res => {
-        const payment = res.result.payment
-        console.log('payment', res);
-        wx.requestPayment({
-          ...payment,
-          success(res) {
-            console.log('pay success', res)
-          },
-          fail(res) {
-            console.error('pay fail', res)
-          }
+        debugger
+        let submchPayParams = res.data.data.params
+        console.log("submchPayParams", submchPayParams);
+        this.setData({
+          prepareSubmchPay: true,
+          submchPayParams
         })
+        debugger
       },
-      fail: ()=>{
+      fail: () => {
         console.error
       },
     })
-     * **/
 
+
+    
+
+
+    
+
+  },
+  // 将已经下单的商品从购物车中移除
+  async removeCartsGoods(goodsCartsIds) {
+    let data = {
+      ids: goodsCartsIds
+    }
+    let res2 = await wx.wxp.request4({
+      url: 'http://localhost:3000/user/my/carts',
+      method: 'delete',
+      data
+    })
+    console.log('res2', res2);
+
+    if (res2.data.msg == 'ok') {
+      wx.switchTab({
+        url: '/pages/cart/index',
+      })
+    } else {
+      wx.showModal({
+        title: '更新购物车数据失败',
+        showCancel: false
+      })
+    }
   },
   // 小微商户支付成功后
   async bindPaySuccess(res) {
@@ -336,7 +340,7 @@ Page({
     }
     // console.log('data', data);
 
-    wx.cloud.callFunction({
+    wx.wxp.cloud.callFunction({
       name: 'pay',
       data,
       success: res => {
@@ -373,7 +377,7 @@ Page({
   onGetOpenid: function () {
     // data:传递给云函数的参数，在云函数中可通过 event 参数获取
     // 调用云函数
-    wx.cloud.callFunction({
+    wx.wxp.cloud.callFunction({
       name: 'login',
       data: {},
       success: res => {
