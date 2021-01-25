@@ -123,7 +123,6 @@ Page({
       }
     }
     console.log("totalIdValue", totalIdValue);
-
     let goodsSku = this.data.goodsSkuData.goodsSku
     let tempTotalIdValue = 0
 
