@@ -14,6 +14,7 @@ Page({
     submchPayParams: {},
     submchPayorderResult: {},
     prepareSubmchPay: false,
+    fileID:''
   },
 
   // 测试小微商户云支付
@@ -214,7 +215,8 @@ Page({
   // 6.11
   // 测试文件拉取
   async testForFileRetrieve(e) {
-    const fileID = 'cloud://weapp-ebfl5.7765-weapp-ebfl5-1301675402/img.png'
+    const fileID = this.data.fileID
+    debugger
     let res = await wx.wxp.cloud.getTempFileURL({
       fileList: [{
         fileID,
@@ -224,7 +226,7 @@ Page({
     let url = res.fileList[0].tempFileURL
     // 可以浏览器打开这个地址，或直接在页面中展示
     console.log('url', url);
-
+    debugger
   },
 
   // 测试文件上传
@@ -241,6 +243,9 @@ Page({
     })
     // {errMsg: "cloud.uploadFile:ok", fileID: "cloud://weapp-ebfl5.7765-weapp-ebfl5-1301675402/img.png", statusCode: 204}
     // cloud://weapp-ebfl5.7765-weapp-ebfl5-1301675402/img.png
+    this.setData({
+      fileID: res.fileID
+    })
     console.log('res', res);
   },
   // 6.10
