@@ -25,9 +25,6 @@
 
   <button class="userinfo-nickname" bindtap="testForGetUser">测试小程序端拉取用户</button>
 
-  <!-- 6.13 -->
-  <ad unit-id="adunit-121d18004936ce9e"></ad>
-
   <!-- 6.10 -->
   <button class="userinfo-nickname" bindtap="testForChat">测试数据推送监听</button>
   <button class="userinfo-nickname" bindtap="testForSend">测试推送</button>
@@ -37,6 +34,8 @@
   <button class="userinfo-nickname" bindtap="testForFileUpload">测试文件上传</button>
   <button class="userinfo-nickname" bindtap="testForFileRetrieve">测试文件拉取</button>
 
+  <!-- 6.13 -->
+  <ad unit-id="adunit-121d18004936ce9e"></ad>
   <!-- 7.2 -->
   <button class="userinfo-nickname" bindtap="testForRewardedVideoAd">看广告拿积分</button>
 
